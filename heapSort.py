@@ -27,6 +27,8 @@ def heapSort(Arr):
 
 Arr = [2, 66, 30, 5, 9, 10]
 n = len(Arr)
+print("Initial array:")
+print(Arr)
 
 heapSort(Arr)
 

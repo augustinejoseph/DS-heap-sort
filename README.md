@@ -5,6 +5,14 @@ A heap is a specialized tree-based data structure in computer science that satis
 <hr>
 <br>
 
+## Heapify
+Heapify is an algorithm used to convert a binary tree into a heap data structure.
+
+![image](images/heapify.png)
+
+The heapify function is typically called starting from the last non-leaf node in the heap and then recursively applied to its parent nodes until the root node is reached.
+In a binary heap, the last non-leaf node can be found at  **(n//2) - 1,** where n is the total number of elements in the heap.
+
 ## Max Heap and Min Heap
 ### Max heap
 
@@ -76,3 +84,64 @@ If the index of any element in the array is *i*, the element in the index *2i+1*
 * Right element: (2i+2) ==> (2*0+2) ==>  2nd index posistion. ==> 9.
 
 
+## Heap Sort
+>**👋**
+> The heapify function is typically not called on leaf nodes during the construction of a max heap or during the sorting process in heap sort. This is because leaf nodes do not have any children, and therefore there is no need to perform heapify on them.
+
+### Heap sort involves two main steps:
+
+1. **Building a Max Heap:** 
+* The given array is first converted into a max heap. 
+* This step rearranges the elements in the array so that they satisfy the heap property, which means the value of each node is greater than or equal to the values of its children (for a max heap). 
+* This process typically involves using a function called heapify to adjust the elements and maintain the heap property.
+
+
+2. **Sorting the Heap:** 
+* After the max heap is constructed, the largest element (which is at the root) is swapped with the last element in the array. 
+* The heap size is reduced by 1, and then the heapify function is called on the root to restore the heap property. * This swapping and heapify process is repeated for the remaining elements in reverse order until the entire array is sorted.
+
+**Time complexity :** O(n log n), there are n elements. each elements takes log n time for finding its posistion in the heap. The log n is based on the height of the tree.
+
+```python
+# Heapify function
+def heapify(Arr, n, i):
+    largest = i
+    left = 2 * i + 1
+    right = 2 * i + 2
+
+    if left < n and Arr[left] > Arr[largest]:
+        largest = left
+
+    if right < n and Arr[right] > Arr[largest]:
+        largest = right
+
+    if largest != i:
+        Arr[i], Arr[largest] = Arr[largest], Arr[i]
+        heapify(Arr, n, largest)
+
+# Heap sort
+def heapSort(Arr):
+    n = len(Arr)
+
+    for i in range(n // 2 - 1, -1, -1):
+        heapify(Arr, n, i)
+
+    for i in range(n - 1, 0, -1):
+        Arr[0], Arr[i] = Arr[i], Arr[0]
+        heapify(Arr, i, 0)
+
+Arr = [2, 66, 30, 5, 9, 10]
+n = len(Arr)
+
+heapSort(Arr)
+
+# Printing the result
+print("Sorted array:")
+for i in range(n):
+    print(Arr[i])
+
+
+# Output :
+Initial array: 2, 66, 30, 5, 9, 10
+Sorted array: 2,5,9,10,30,66
+```
