@@ -61,3 +61,18 @@ The recently deleted element can be stored in this last location, allowing for e
 <hr>
 <br>
 
+## Relationship between Array Indexes and Tree Elements
+If the index of any element in the array is *i*, the element in the index *2i+1* will become the left child and element in *2i+2* index will become the right child.
+
+* i = index of the element
+* 2i+1 = left child
+* 2i+2 = right child
+
+![image](images/relationship_bw_array_and_heap.png)
+
+* Root element: 1 is the root element in the 0th index posistion.
+* In the first row,  the value of i is 0.
+* Left element: (2i+1) ie, (2*0+1) ==> 1st index posistion of the element. ==> 12.
+* Right element: (2i+2) ==> (2*0+2) ==>  2nd index posistion. ==> 9.
+
+
